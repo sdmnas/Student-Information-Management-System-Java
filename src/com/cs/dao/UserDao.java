@@ -24,5 +24,6 @@ public class UserDao {
             resultUser.setPassWord(rs.getString("password"));
         }
         return resultUser;
+        //登录验证user的userName和password是否匹配db_student中的表t_user信息
     }
 }

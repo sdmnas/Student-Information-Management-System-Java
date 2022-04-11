@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/**
+ * 学生Dao类
+ */
 public class StudentDao {
     public static int delete(Connection con, String id) throws Exception {
         String sql = "delete from t_student where id=?";
@@ -36,7 +39,7 @@ public class StudentDao {
         pstmt.setDouble(4, stu.getHeight());
         pstmt.setString(5, stu.getPs());
         return pstmt.executeUpdate();
-    }
+    }  //学生信息添加
 
     public ResultSet list(Connection con, Student stu) throws Exception {
         StringBuffer sb = new StringBuffer("select * from t_student b");
