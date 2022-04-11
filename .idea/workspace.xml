@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2959d7b9-63af-4af2-a8a9-816db372ba1e" name="变更" comment="" />
+    <list default="true" id="5e6ba48c-5feb-465b-b0e3-b5777589d3b5" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +17,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="27CWoLsCE2J1GFHUVn4ShfpC3Bp" />
+  <component name="ProjectId" id="27dun535MV10hXLvH3Kot40XLMy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,45 +27,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/JDBC/mysql-connector-java-8.0.28.jar" />
     <property name="project.structure.last.edited" value="模块" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Admin\IdeaProjects\CSTrail\JDBC" />
-    </key>
-  </component>
-  <component name="RunManager" selected="应用程序.LogOnFrm">
-    <configuration name="AboutFrm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.cs.view.AboutFrm" />
-      <module name="CSTrail" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cs.view.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DbUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.cs.util.DbUtil" />
-      <module name="CSTrail" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cs.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="LogOnFrm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cs.view.LogOnFrm" />
-      <module name="CSTrail" />
+      <module name="Student-Information-Management-System-Java" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.cs.view.*" />
@@ -79,19 +48,17 @@
     <recent_temporary>
       <list>
         <item itemvalue="应用程序.LogOnFrm" />
-        <item itemvalue="应用程序.AboutFrm" />
-        <item itemvalue="应用程序.DbUtil" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
-      <changelist id="2959d7b9-63af-4af2-a8a9-816db372ba1e" name="变更" comment="" />
-      <created>1648824731256</created>
+      <changelist id="5e6ba48c-5feb-465b-b0e3-b5777589d3b5" name="变更" comment="" />
+      <created>1649662460416</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1648824731256</updated>
+      <updated>1649662460416</updated>
     </task>
     <servers />
   </component>
