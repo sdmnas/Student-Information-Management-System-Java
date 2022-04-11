@@ -2,12 +2,12 @@ package com.cs.model;
 
 public class Student {
 
-    private int id;
-    private String studentName;
-    private String years;
-    private String sex;
-    private Double height;
-    private String ps;
+    private int id;  //学生编号
+    private String studentName;  //学生姓名
+    private String years;  //学生年龄
+    private String sex;    //学生性别
+    private Double height; //学生身高
+    private String ps;     //备注信息
 
     public Student() {
         super();
