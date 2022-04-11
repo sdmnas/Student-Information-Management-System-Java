@@ -1,7 +1,5 @@
 package com.cs.model;
 
-import com.sun.org.apache.xpath.internal.objects.XString;
-
 /**
  * 用户实体
  */
@@ -13,6 +11,7 @@ public class User {
     public User() {
         super();
     }
+
     public User(String userName, String passWord) {
         super();
         this.userName = userName;
@@ -43,3 +42,4 @@ public class User {
         this.passWord = passWord;
     }
 }
+

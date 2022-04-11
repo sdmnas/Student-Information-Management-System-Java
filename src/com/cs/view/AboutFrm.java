@@ -1,29 +1,11 @@
 package com.cs.view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JInternalFrame;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
+import java.awt.*;
 
 public class AboutFrm extends JInternalFrame {
 
-    
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    AboutFrm frame = new AboutFrm();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     public AboutFrm() {
         getContentPane().setBackground(Color.black);
@@ -52,5 +34,19 @@ public class AboutFrm extends JInternalFrame {
         getContentPane().setLayout(groupLayout);
 
     }
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    AboutFrm frame = new AboutFrm();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }
+
 

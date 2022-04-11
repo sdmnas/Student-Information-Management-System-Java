@@ -8,25 +8,13 @@ import java.sql.DriverManager;
  */
 
 public class DbUtil {
-    private String dbUrl="jdbc:mysql://localhost:3306/db_student";
-    private String dbUsrName="root";
-    private String dbPassword="";
+    private String dbUrl = "jdbc:mysql://localhost:3306/db_student";
+    private String dbUsrName = "root";
+    private String dbPassword = "";
     //private String jdbcName="com.mysql.jdbc.Driver";
 
-    public Connection getCon()throws  Exception{
-        //Class.forName(jdbcName);
-        Connection con=DriverManager.getConnection(dbUrl,dbUsrName,dbPassword);
-        return con;
-    }//链接数据库
-
-    public void closeCon(Connection con) throws Exception{
-        if(con!=null) {
-            con.close();
-        }
-    }//关闭数据库
-
     public static void main(String[] args) {
-        DbUtil dbUtil=new DbUtil();
+        DbUtil dbUtil = new DbUtil();
         try {
             dbUtil.getCon();
             System.out.println("数据库链接成功");
@@ -35,4 +23,17 @@ public class DbUtil {
             System.out.println("数据库链接失败");
         }
     }
+
+    public Connection getCon() throws Exception {
+        //Class.forName(jdbcName);
+        Connection con = DriverManager.getConnection(dbUrl, dbUsrName, dbPassword);
+        return con;
+    }//链接数据库
+
+    public void closeCon(Connection con) throws Exception {
+        if (con != null) {
+            con.close();
+        }
+    }//关闭数据库
 }
+

@@ -1,55 +1,32 @@
 package com.cs.view;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-
-import javax.swing.ButtonGroup;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.LineBorder;
-
 import com.cs.dao.StudentDao;
 import com.cs.model.Student;
 import com.cs.util.DbUtil;
 import com.cs.util.StringUtil;
 
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+
 public class StudentAddFrm extends JInternalFrame {
+    private final ButtonGroup buttonGroup = new ButtonGroup();
     private JTextField studentNameTxt;
     private JTextField yearsTxt;
-    private final ButtonGroup buttonGroup = new ButtonGroup();
     private JTextField heightTxt;
     private JTextArea studentPsTxt;
     private JRadioButton manJrb;
     private JRadioButton femaleJrb;
 
-    private DbUtil dbUtil=new DbUtil();
-    private StudentDao studentDao=new StudentDao();
+    private DbUtil dbUtil = new DbUtil();
+    private StudentDao studentDao = new StudentDao();
 
-    
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    StudentAddFrm frame = new StudentAddFrm();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-    
+
     public StudentAddFrm() {
         setClosable(true);
         setIconifiable(true);
@@ -85,8 +62,7 @@ public class StudentAddFrm extends JInternalFrame {
         studentPsTxt = new JTextArea();
 
         JLabel label_5 = new JLabel("");
-        
-        
+
 
         JButton button = new JButton("\u6DFB\u52A0");
         button.addActionListener(new ActionListener() {
@@ -143,7 +119,7 @@ public class StudentAddFrm extends JInternalFrame {
                                                                                         .addComponent(heightTxt))))
                                                                 .addComponent(studentPsTxt))
                                                         .addContainerGap(44, Short.MAX_VALUE)))))
-                                                        );
+        );
         groupLayout.setVerticalGroup(
                 groupLayout.createParallelGroup(Alignment.LEADING)
                         .addGroup(groupLayout.createSequentialGroup()
@@ -177,9 +153,23 @@ public class StudentAddFrm extends JInternalFrame {
         getContentPane().setLayout(groupLayout);
 
         // �����ı���߿�
-        studentPsTxt.setBorder(new LineBorder(new java.awt.Color(127,157,185), 1, false));
-        
+        studentPsTxt.setBorder(new LineBorder(new java.awt.Color(127, 157, 185), 1, false));
+
     }
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    StudentAddFrm frame = new StudentAddFrm();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     private void resetValueActionPerformed(ActionEvent e) {
         this.resetValue();
     }
@@ -188,49 +178,49 @@ public class StudentAddFrm extends JInternalFrame {
      * 学生信息添加
      */
     private void studentAddActionPerformed(ActionEvent evt) {
-        String studentName=this.studentNameTxt.getText();
-        String years= this.yearsTxt.getText();
-        Double height= Double.valueOf(this.heightTxt.getText());
-        String studentPs=this.studentPsTxt.getText();
+        String studentName = this.studentNameTxt.getText();
+        String years = this.yearsTxt.getText();
+        Double height = Double.valueOf(this.heightTxt.getText());
+        String studentPs = this.studentPsTxt.getText();
 
-        if(StringUtil.isEmpty(studentName)){
+        if (StringUtil.isEmpty(studentName)) {
             JOptionPane.showMessageDialog(null, "学生姓名不能为空！");
             return;
         }
 
-        if(StringUtil.isEmpty(years)){
+        if (StringUtil.isEmpty(years)) {
             JOptionPane.showMessageDialog(null, "学生年龄不能为空！");
             return;
         }
 
-        if(StringUtil.isEmpty(String.valueOf(height))){
+        if (StringUtil.isEmpty(String.valueOf(height))) {
             JOptionPane.showMessageDialog(null, "学生身高不能为空");
             return;
         }
 
-        String sex="";
-        if(manJrb.isSelected()){
-            sex="男";
-        }else if(femaleJrb.isSelected()){
-            sex="女";
+        String sex = "";
+        if (manJrb.isSelected()) {
+            sex = "男";
+        } else if (femaleJrb.isSelected()) {
+            sex = "女";
         }
 
-        Student student=new Student(studentName,years,sex,height,studentPs);
+        Student student = new Student(studentName, years, sex, height, studentPs);
 
-        Connection con=null;
-        try{
-            con=dbUtil.getCon();
-            int addNum=studentDao.add(con, student);
-            if(addNum==1){
+        Connection con = null;
+        try {
+            con = dbUtil.getCon();
+            int addNum = studentDao.add(con, student);
+            if (addNum == 1) {
                 JOptionPane.showMessageDialog(null, "学生信息添加成功！");
                 resetValue();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "学生信息添加失败！");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "学生信息添加失败！");
-        }finally{
+        } finally {
             try {
                 dbUtil.closeCon(con);
             } catch (Exception e) {
@@ -242,7 +232,7 @@ public class StudentAddFrm extends JInternalFrame {
     /**
      * 重置
      */
-    private void resetValue(){
+    private void resetValue() {
         this.studentNameTxt.setText("");
         this.yearsTxt.setText("");
         this.heightTxt.setText("");
@@ -250,3 +240,4 @@ public class StudentAddFrm extends JInternalFrame {
         this.studentPsTxt.setText("");
     }
 }
+

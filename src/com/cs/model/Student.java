@@ -1,7 +1,5 @@
 package com.cs.model;
 
-import java.sql.Date;
-
 public class Student {
 
     private int id;
@@ -87,3 +85,4 @@ public class Student {
         this.height = height;
     }
 }
+

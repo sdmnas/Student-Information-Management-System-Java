@@ -1,6 +1,16 @@
 package com.cs.view;
 
-import java.awt.EventQueue;
+import com.cs.dao.StudentDao;
+import com.cs.model.Student;
+import com.cs.util.DbUtil;
+import com.cs.util.StringUtil;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -9,65 +19,20 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Vector;
 
-import javax.swing.ButtonGroup;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
-
-import com.cs.dao.StudentDao;
-import com.cs.model.Student;
-import com.cs.util.DbUtil;
-import com.cs.util.StringUtil;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class StudentManageFrm extends JInternalFrame {
+    private final ButtonGroup buttonGroup = new ButtonGroup();
     private JTable studentTable;
     private JTextField s_studentNameTxt;
     private JTextField s_yearsTxt;
-    private JRadioButton manJrb ;
-    private JRadioButton femaleJrb ;
-
-    private DbUtil dbUtil=new DbUtil();
-    private StudentDao studentDao=new StudentDao();
-
+    private JRadioButton manJrb;
+    private JRadioButton femaleJrb;
+    private DbUtil dbUtil = new DbUtil();
+    private StudentDao studentDao = new StudentDao();
     private JTextField idTxt;
     private JTextField studentNameTxt;
-    private final ButtonGroup buttonGroup = new ButtonGroup();
     private JTextField heightTxt;
     private JTextArea studentPsTxt;
     private JTextField yearTxt;
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    StudentManageFrm frame = new StudentManageFrm();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     /**
      * Create the frame.
@@ -250,11 +215,11 @@ public class StudentManageFrm extends JInternalFrame {
         JLabel label_1 = new JLabel("\u5b66\u751f\u5e74\u9f84\uff1a");
 
         s_yearsTxt = new JTextField();
-        
+
         s_yearsTxt.setColumns(10);
 
         JLabel label_2 = new JLabel("");//图书类别，下同
-        
+
         JLabel s_studentTypeJcb = new JLabel("");
 
         JButton button = new JButton("\u67E5\u8BE2");
@@ -309,15 +274,16 @@ public class StudentManageFrm extends JInternalFrame {
         });
         scrollPane.setViewportView(studentTable);
         studentTable.setModel(new DefaultTableModel(
-                new Object[][] {
+                new Object[][]{
                 },
-                new String[] {
+                new String[]{
                         "\u7F16\u53F7", "\u5b66\u751f\u59d3\u540d", "\u5b66\u751f\u5e74\u9f84", "\u5b66\u751f\u6027\u522b", "\u5b66\u751f\u8eab\u9ad8", "\u5b66\u751f\u5907\u6ce8"
                 }
         ) {
-            boolean[] columnEditables = new boolean[] {
+            boolean[] columnEditables = new boolean[]{
                     false, false, false, false, false, false
             };
+
             public boolean isCellEditable(int row, int column) {
                 return columnEditables[column];
             }
@@ -330,13 +296,29 @@ public class StudentManageFrm extends JInternalFrame {
     }
 
     /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    StudentManageFrm frame = new StudentManageFrm();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
      * 查询事件处理
      */
     private void studentSearchActionPerformed(ActionEvent evt) {
-        String studentName=this.s_studentNameTxt.getText();
-        String years=this.s_yearsTxt.getText();
+        String studentName = this.s_studentNameTxt.getText();
+        String years = this.s_yearsTxt.getText();
 
-        Student student=new Student(studentName,years);
+        Student student = new Student(studentName, years);
         this.fillTable(student);
     }
 
@@ -345,14 +327,14 @@ public class StudentManageFrm extends JInternalFrame {
      * 初始化表格数据
      */
     private void fillTable(Student student) {
-        DefaultTableModel dtm=(DefaultTableModel) studentTable.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) studentTable.getModel();
         dtm.setRowCount(0); //设置成0行
-        Connection con=null;
-        try{
-            con=dbUtil.getCon();
-            ResultSet rs=studentDao.list(con, student);
-            while(rs.next()){
-                Vector v=new Vector();
+        Connection con = null;
+        try {
+            con = dbUtil.getCon();
+            ResultSet rs = studentDao.list(con, student);
+            while (rs.next()) {
+                Vector v = new Vector();
                 v.add(rs.getString("id"));
                 v.add(rs.getString("name"));
                 v.add(rs.getString("year"));
@@ -361,9 +343,9 @@ public class StudentManageFrm extends JInternalFrame {
                 v.add(rs.getString("ps"));
                 dtm.addRow(v);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
                 dbUtil.closeCon(con);
             } catch (Exception e) {
@@ -373,74 +355,74 @@ public class StudentManageFrm extends JInternalFrame {
     }
 
     /**
-     *表格点击事件处理
+     * 表格点击事件处理
      */
     private void studentTableMousePressed(MouseEvent met) {
-        int row=this.studentTable.getSelectedRow();
-        this.idTxt.setText((String)studentTable.getValueAt(row, 0));
-        this.studentNameTxt.setText((String)studentTable.getValueAt(row, 1));
-        this.yearTxt.setText((String)studentTable.getValueAt(row, 2));
-        String sex=(String)studentTable.getValueAt(row, 3);
-        if("男".equals(sex)){
+        int row = this.studentTable.getSelectedRow();
+        this.idTxt.setText((String) studentTable.getValueAt(row, 0));
+        this.studentNameTxt.setText((String) studentTable.getValueAt(row, 1));
+        this.yearTxt.setText((String) studentTable.getValueAt(row, 2));
+        String sex = (String) studentTable.getValueAt(row, 3);
+        if ("男".equals(sex)) {
             this.manJrb.setSelected(true);
-        }else if("女".equals(sex)){
+        } else if ("女".equals(sex)) {
             this.femaleJrb.setSelected(true);
         }
-        this.heightTxt.setText(studentTable.getValueAt(row, 4) +"");
-        this.studentPsTxt.setText((String)studentTable.getValueAt(row, 5));
+        this.heightTxt.setText(studentTable.getValueAt(row, 4) + "");
+        this.studentPsTxt.setText((String) studentTable.getValueAt(row, 5));
     }
 
     private void studentUpdateActionPerformed(ActionEvent evt) {
-        String id=this.idTxt.getText();
-        if(StringUtil.isEmpty(id)){
+        String id = this.idTxt.getText();
+        if (StringUtil.isEmpty(id)) {
             JOptionPane.showMessageDialog(null, "请选择要修改的记录");
             return;
         }
 
-        String studentName=this.studentNameTxt.getText();
-        String year=this.yearTxt.getText();
-        String height=this.heightTxt.getText();
-        String studentPs=this.studentPsTxt.getText();
+        String studentName = this.studentNameTxt.getText();
+        String year = this.yearTxt.getText();
+        String height = this.heightTxt.getText();
+        String studentPs = this.studentPsTxt.getText();
 
-        if(StringUtil.isEmpty(studentName)){
+        if (StringUtil.isEmpty(studentName)) {
             JOptionPane.showMessageDialog(null, "学生名称不能为空！");
             return;
         }
 
-        if(StringUtil.isEmpty(year)){
+        if (StringUtil.isEmpty(year)) {
             JOptionPane.showMessageDialog(null, "学生年龄不能为空！");
             return;
         }
 
-        if(StringUtil.isEmpty(height)){
+        if (StringUtil.isEmpty(height)) {
             JOptionPane.showMessageDialog(null, "学生身高不能为空！");
             return;
         }
 
-        String sex="";
-        if(manJrb.isSelected()){
-            sex="男";
-        }else if(femaleJrb.isSelected()){
-            sex="女";
+        String sex = "";
+        if (manJrb.isSelected()) {
+            sex = "男";
+        } else if (femaleJrb.isSelected()) {
+            sex = "女";
         }
 
 
-        Student student=new Student(Integer.parseInt(id),studentName,year,sex,Double.parseDouble(height),studentPs);
-        Connection con=null;
-        try{
-            con=dbUtil.getCon();
-            int addNum=StudentDao.update(con, student);
-            if(addNum==1){
+        Student student = new Student(Integer.parseInt(id), studentName, year, sex, Double.parseDouble(height), studentPs);
+        Connection con = null;
+        try {
+            con = dbUtil.getCon();
+            int addNum = StudentDao.update(con, student);
+            if (addNum == 1) {
                 JOptionPane.showMessageDialog(null, "学生信息修改成功！");
                 resetValue();
                 this.fillTable(new Student());
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "学生信息修改失败！");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "学生信息修改失败！");
-        }finally{
+        } finally {
             try {
                 dbUtil.closeCon(con);
             } catch (Exception e) {
@@ -450,28 +432,28 @@ public class StudentManageFrm extends JInternalFrame {
     }
 
     private void studentDeleteActionPerformed(ActionEvent evt) {
-        String id=idTxt.getText();
-        if(StringUtil.isEmpty(id)){
+        String id = idTxt.getText();
+        if (StringUtil.isEmpty(id)) {
             JOptionPane.showMessageDialog(null, "请选择要删除的记录");
             return;
         }
-        int n=JOptionPane.showConfirmDialog(null, "确定要删除该记录吗？");
-        if(n==0){
-            Connection con=null;
-            try{
-                con=dbUtil.getCon();
-                int deleteNum=StudentDao.delete(con, id);
-                if(deleteNum==1){
+        int n = JOptionPane.showConfirmDialog(null, "确定要删除该记录吗？");
+        if (n == 0) {
+            Connection con = null;
+            try {
+                con = dbUtil.getCon();
+                int deleteNum = StudentDao.delete(con, id);
+                if (deleteNum == 1) {
                     JOptionPane.showMessageDialog(null, "删除成功");
                     this.resetValue();
                     this.fillTable(new Student());
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "删除失败");
                 }
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "删除失败");
-            }finally{
+            } finally {
                 try {
                     dbUtil.closeCon(con);
                 } catch (Exception e) {
@@ -480,7 +462,8 @@ public class StudentManageFrm extends JInternalFrame {
             }
         }
     }
-    private void resetValue(){
+
+    private void resetValue() {
         this.idTxt.setText("");
         this.studentNameTxt.setText("");
         this.yearTxt.setText("");
@@ -489,4 +472,5 @@ public class StudentManageFrm extends JInternalFrame {
         this.studentPsTxt.setText("");
     }
 }
+
 

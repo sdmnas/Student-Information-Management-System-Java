@@ -1,37 +1,15 @@
 package com.cs.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
-import javax.swing.JDesktopPane;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainFrm extends JFrame {
 
     private JPanel contentPane;
-    private JDesktopPane table =null;
-    
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    MainFrm frame = new MainFrm();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    private JDesktopPane table = null;
 
     /**
      * Create the frame.
@@ -58,18 +36,18 @@ public class MainFrm extends JFrame {
         mnNewMenu_2.add(menuItem_2);
         menuItem_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                StudentAddFrm StudentAddFrm=new StudentAddFrm();
+                StudentAddFrm StudentAddFrm = new StudentAddFrm();
                 StudentAddFrm.setVisible(true);
                 table.add(StudentAddFrm);
             }
         });
-        
+
         JMenuItem menuItem_3 = new JMenuItem("\u5b66\u751f\u4fe1\u606f\u7ef4\u62a4");
         menuItem_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/edit.png")));
         mnNewMenu_2.add(menuItem_3);
         menuItem_3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                StudentManageFrm studentManageFrm=new StudentManageFrm();
+                StudentManageFrm studentManageFrm = new StudentManageFrm();
                 studentManageFrm.setVisible(true);
                 table.add(studentManageFrm);
             }
@@ -78,8 +56,8 @@ public class MainFrm extends JFrame {
         JMenuItem menuItem_4 = new JMenuItem("\u5B89\u5168\u9000\u51FA");
         menuItem_4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int result=JOptionPane.showConfirmDialog(null, "是否退出系统");
-                if(result==0){
+                int result = JOptionPane.showConfirmDialog(null, "是否退出系统");
+                if (result == 0) {
                     dispose();
                 }
             }
@@ -94,7 +72,7 @@ public class MainFrm extends JFrame {
         JMenuItem mntmjava = new JMenuItem("\u5173\u4E8Esdmnas");
         mntmjava.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                AboutFrm AboutFrm=new AboutFrm();
+                AboutFrm AboutFrm = new AboutFrm();
                 AboutFrm.setVisible(true);
                 table.add(AboutFrm);
             }
@@ -110,5 +88,18 @@ public class MainFrm extends JFrame {
         contentPane.add(table, BorderLayout.CENTER);
 
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    MainFrm frame = new MainFrm();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

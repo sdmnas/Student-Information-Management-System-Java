@@ -1,28 +1,17 @@
 package com.cs.view;
 
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
-
 import com.cs.dao.UserDao;
 import com.cs.model.User;
 import com.cs.util.DbUtil;
 import com.cs.util.StringUtil;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class LogOnFrm extends JFrame {
 
@@ -30,24 +19,8 @@ public class LogOnFrm extends JFrame {
     private JTextField userNameTxt;
     private JPasswordField passwordTxt;
 
-    private DbUtil dbUtil=new DbUtil();
-    private UserDao userDao=new UserDao();
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    LogOnFrm frame = new LogOnFrm();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    private DbUtil dbUtil = new DbUtil();
+    private UserDao userDao = new UserDao();
 
     /**
      * Create the frame.
@@ -150,28 +123,44 @@ public class LogOnFrm extends JFrame {
     }
 
     /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    LogOnFrm frame = new LogOnFrm();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
      * 登录事件处理
      */
     private void loginActionPerformed(ActionEvent evt) {
-        String userName=this.userNameTxt.getText();
-        String password=new String(this.passwordTxt.getPassword());
-        if(StringUtil.isEmpty(userName)){
+        String userName = this.userNameTxt.getText();
+        String password = new String(this.passwordTxt.getPassword());
+        if (StringUtil.isEmpty(userName)) {
             JOptionPane.showMessageDialog(null, "用户名不能为空！");
             return;
         }
-        if(StringUtil.isEmpty(password)){
+        if (StringUtil.isEmpty(password)) {
             JOptionPane.showMessageDialog(null, "密码不能为空！");
             return;
         }
-        User user=new User(userName,password);
-        Connection con=null;
+        User user = new User(userName, password);
+        Connection con = null;
         try {
-            con=dbUtil.getCon();
-            User currentUser=userDao.login(con, user);
-            if(currentUser!=null){
+            con = dbUtil.getCon();
+            User currentUser = userDao.login(con, user);
+            if (currentUser != null) {
                 dispose();
                 new MainFrm().setVisible(true);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "用户名或者密码错误！");
             }
         } catch (Exception e) {
