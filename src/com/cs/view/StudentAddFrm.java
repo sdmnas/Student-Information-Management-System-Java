@@ -152,10 +152,9 @@ public class StudentAddFrm extends JInternalFrame {
         );
         getContentPane().setLayout(groupLayout);
 
-        // �����ı���߿�
         studentPsTxt.setBorder(new LineBorder(new java.awt.Color(127, 157, 185), 1, false));
 
-    }
+    }//学生UI界面，也是插件辅助生成的（很丑= =）
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -175,7 +174,7 @@ public class StudentAddFrm extends JInternalFrame {
     }
 
     /**
-     * 学生信息添加
+     * 学生信息添加的实现
      */
     private void studentAddActionPerformed(ActionEvent evt) {
         String studentName = this.studentNameTxt.getText();

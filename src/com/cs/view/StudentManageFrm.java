@@ -291,13 +291,9 @@ public class StudentManageFrm extends JInternalFrame {
         studentTable.getColumnModel().getColumn(5).setPreferredWidth(119);
         getContentPane().setLayout(groupLayout);
 
-        //this.fillStudentType("search");
         this.fillTable(new Student());
-    }
+    }//
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -309,7 +305,7 @@ public class StudentManageFrm extends JInternalFrame {
                 }
             }
         });
-    }
+    }//学生管理更能界面UI，及查询，修改与一体的界面，也是借助插件辅助生成的（也很丑）
 
     /**
      * 查询事件处理

@@ -4,6 +4,10 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.*;
 
+/**
+ *  关于界面
+ */
+
 public class AboutFrm extends JInternalFrame {
 
 

@@ -120,7 +120,7 @@ public class LogOnFrm extends JFrame {
         contentPane.setLayout(gl_contentPane);
 
         this.setLocationRelativeTo(null);  //居中显示
-    }
+    } //登录界面UI设计，绝大部分都是用插件生成的（别想改了，丑就丑吧= =）
 
     /**
      * Launch the application.
@@ -166,7 +166,7 @@ public class LogOnFrm extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }  //登录得具体处理，会弹出信息来提示是否登录成功，或有相应的问题。
 
     /**
      * 重置事件处理

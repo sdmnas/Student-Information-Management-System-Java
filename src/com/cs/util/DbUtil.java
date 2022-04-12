@@ -11,7 +11,7 @@ public class DbUtil {
     private String dbUrl = "jdbc:mysql://localhost:3306/db_student";
     private String dbUsrName = "root";
     private String dbPassword = "";
-    //private String jdbcName="com.mysql.jdbc.Driver";
+
 
     public static void main(String[] args) {
         DbUtil dbUtil = new DbUtil();
@@ -22,10 +22,9 @@ public class DbUtil {
             e.printStackTrace();
             System.out.println("数据库链接失败");
         }
-    }
+    }//链接成功或失败控制台都会输出信息
 
     public Connection getCon() throws Exception {
-        //Class.forName(jdbcName);
         Connection con = DriverManager.getConnection(dbUrl, dbUsrName, dbPassword);
         return con;
     }//链接数据库

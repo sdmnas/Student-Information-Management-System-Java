@@ -102,4 +102,4 @@ public class MainFrm extends JFrame {
             }
         });
     }
-}
+}//主界面UI设计，主要也就是做一个背景板，和作为打开其他功能页面的入口
